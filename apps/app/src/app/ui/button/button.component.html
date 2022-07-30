@@ -2,17 +2,18 @@
   [class]="
     typeButton === 'success'
       ? isLoading
-        ? 'noc-bg-green text-white text-sm noc-shadow font-bold px-2 py-1 noc-rounded flex items-center justify-center relative noc-bg-hidden noc-text-hidden noc-cursor-no-drop'
+        ? 'noc-bg-green text-white text-sm noc-shadow font-bold p-2 noc-rounded flex items-center justify-center relative noc-bg-hidden noc-text-hidden noc-cursor-no-drop'
         : 'noc-bg-green text-white text-sm noc-shadow font-bold p-2 noc-rounded flex items-center justify-center relative'
       : isLoading
       ? 'bg-white noc-text-ped noc-shadow text-sm font-bold px-2 py-1 noc-rounded flex items-center justify-center relative noc-bg-hidden noc-text-hidden noc-cursor-no-drop'
       : 'bg-white noc-text-ped noc-shadow text-sm font-bold p-2 noc-rounded flex items-center justify-center relative'
   "
+  [ngClass]="addClass"
   [disabled]="isLoading"
   (click)="click()"
 >
   {{ name }}
-  <div class="ml-1 mt-1" *ngIf="isLoading">
+  <div class="absolute top-2 right-3" *ngIf="isLoading">
     <nz-spin nzSimple [nzSize]="'small'"></nz-spin>
   </div>
 </button>

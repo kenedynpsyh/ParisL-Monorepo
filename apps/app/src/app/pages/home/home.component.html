@@ -1,8 +1,7 @@
-<app-button
-  [isLoading]="false"
-  (onclick)="click()"
-  [typeButton]="'default'"
-  [name]="name"
-></app-button>
+<app-input
+  [invalid]="true"
+  [value]="name"
+  (onchange)="onchange($event)"
+></app-input>
 
 <p>home works!</p>

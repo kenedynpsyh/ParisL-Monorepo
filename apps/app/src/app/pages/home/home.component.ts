@@ -10,6 +10,11 @@ export class HomeComponent implements OnInit {
 
   name = 'Hello Worlds';
 
+  onchange(value: string) {
+    this.name = value;
+    console.log(this.name, value);
+  }
+
   click() {
     console.log('Hello Worlds');
   }

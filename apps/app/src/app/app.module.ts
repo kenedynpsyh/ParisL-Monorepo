@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import AppRoutingModule from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ButtonComponent } from './components/button/button.component';
-import { InputComponent } from './components/input/input.component';
+import { NavbarComponent } from './ui/navbar/navbar.component';
+import { ButtonComponent } from './ui/button/button.component';
+import { InputComponent } from './ui/input/input.component';
 import { DemoNgZorroAntdModule } from './ng-zorro.module';
 import en from '@angular/common/locales/en';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -18,6 +18,7 @@ import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HomeComponent } from './pages/home/home.component';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(en);
 
@@ -41,6 +42,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     BrowserModule,
     AppRoutingModule,
     DemoNgZorroAntdModule,
+    FormsModule,
     DragDropModule,
     ScrollingModule,
     BrowserAnimationsModule,

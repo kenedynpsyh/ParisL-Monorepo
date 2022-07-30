@@ -1,0 +1,32 @@
+<div class="w-fit-content">
+  <span *ngIf="label" class="ml-1 text-gray-600 font-bold">{{ label }}</span>
+  <div
+    class="w-96 h-10 border border-gray-100 noc-rounded transition duration-500 hover:border-green-100 relative overflow-hidden px-3 text-gray-500 font-semibold flex items-center"
+    [ngClass]="invalid ? 'border-red-500' : ''"
+  >
+    <i
+      *ngIf="leftIcon"
+      [class]="leftClick ? 'ml-1 mr-2 cursor-pointer' : 'ml-1 mr-2'"
+      [ngClass]="leftIcon"
+      (click)="leftIcon ? addLeftClick() : null"
+    ></i>
+    <input
+      [type]="type"
+      [placeholder]="placeholder"
+      [name]="name"
+      [id]="id"
+      [(ngModel)]="value"
+      (ngModelChange)="onChange($event)"
+      class="w-full h-full border-none outline-none"
+    />
+    <i
+      *ngIf="rightIcon"
+      [class]="rightClick ? 'mr-1 ml-2 cursor-pointer' : 'mr-1 ml-2'"
+      [ngClass]="rightIcon"
+      (click)="rightIcon ? addRightClick() : null"
+    ></i>
+  </div>
+  <span *ngIf="message" class="text-red-600 text-xs ml-1 font-semibold">{{
+    message
+  }}</span>
+</div>
