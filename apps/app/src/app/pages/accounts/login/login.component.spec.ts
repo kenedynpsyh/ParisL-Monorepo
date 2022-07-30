@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import TestComponentModule from '../../../test-component.module';
 import { ButtonProviderComponent } from '../../../ui/button-provider/button-provider.component';
@@ -13,7 +12,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, FormsModule, TestComponentModule],
-      declarations: [ButtonProviderComponent],
+      declarations: [],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
@@ -42,8 +41,8 @@ describe('LoginComponent', () => {
     const rememmber = fixture.nativeElement.querySelector(
       '#test-rememmber-field'
     ).ngModel;
-    expect(username).toBe('username@yahoo.com');
-    expect(password).toBe('password');
-    expect(rememmber).toBe(true);
+    expect(username).toEqual('username@yahoo.com');
+    expect(password).toEqual('password');
+    expect(rememmber).toEqual(true);
   });
 });
