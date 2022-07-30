@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class InputComponent implements OnInit {
   // Input Props
   @Input() label: string = '';
-  @Input() id: string = '';
-  @Input() name: string = '';
+  @Input() public id: string = '';
+  @Input() public name: string = 'name';
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() value: string = '';
