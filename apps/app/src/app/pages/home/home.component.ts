@@ -8,5 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  name = 'Hello Worlds';
+
+  click() {
+    console.log('Hello Worlds');
+  }
+
+  ngOnInit(): void {
+    console.log('Hello Worlds');
+  }
 }

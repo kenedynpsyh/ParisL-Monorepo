@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://use.fontawesome.com/releases/v5.15.3/css/all.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Kanit&family=Lato:wght@900&family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
+
+$font-family-Inter: 'Inter', sans-serif;
+$font-family-Kanit: 'Kanit', sans-serif;
+$font-family-Lato: 'Lato', sans-serif;
+$font-family-Open: 'Open Sans', sans-serif;
+$font-family-public: 'Public Sans', sans-serif;
+
+$white: rgba(255, 255, 255);
+$boxshadow-pedia: rgb(0 0 0 / 7%) 0px 4px 6px -1px;
+$boxshadow-pedia1: 0 0 10px 0 rgb(0 0 0 / 10%);
+$boxshadow: 0px 0px 10px -7px rgba(0, 0, 0, 0.75);
+$boxshadow-button: rgb(0 171 85 / 24%) 0px 8px 16px 0px;
+$gray: #c9d1d9;
+$color: #4cddbd;
+$text: rgba(49, 53, 59, 0.68);
+
+// General
+
+.hidden {
+  display: none;
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+* {
+  font-family: $font-family-public;
+}
+
+.noc-bg-green {
+  background-color: $color;
+}
+
+.noc-text-ped {
+  color: $color;
+}
+
+.noc-text-size {
+  font-size: 12.666px;
+}
+
+.noc-text {
+  color: $text;
+}
+
+.noc-rounded {
+  border-radius: 8px;
+}
+
+.noc-shadow {
+  box-shadow: $boxshadow-pedia;
+  -webkit-box-shadow: $boxshadow-pedia;
+  -moz-box-shadow: $boxshadow-pedia;
+}
+
+.noc-shadow1 {
+  box-shadow: $boxshadow-pedia1;
+  -webkit-box-shadow: $boxshadow-pedia1;
+  -moz-box-shadow: $boxshadow-pedia1;
+}
+
+.noc-absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.noc-text-hidden {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.noc-bg-hidden {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.noc-cursor-no-drop {
+  cursor: no-drop !important;
+}
+
+.noc-bg-red {
+  background-color: red !important;
+}
+
+.noc-text-red {
+  color: red !important;
+}
+
+.noc-bg-red-hidden {
+  background-color: #ff00004a !important;
+}
+
+.noc-color-red-hidden {
+  color: #ff00004a !important;
+}
