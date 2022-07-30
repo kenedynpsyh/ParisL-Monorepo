@@ -1,8 +1,9 @@
 <div class="w-fit-content">
   <span *ngIf="label" class="ml-1 text-gray-600 font-bold">{{ label }}</span>
   <div
-    class="w-96 h-10 border border-gray-100 noc-rounded transition duration-500 hover:border-green-100 relative overflow-hidden px-3 text-gray-500 font-semibold flex items-center"
-    [ngClass]="invalid ? 'border-red-500' : ''"
+    class="h-10 border border-gray-100 noc-rounded transition duration-500 hover:border-green-100 relative overflow-hidden px-3 text-gray-500 font-semibold flex items-center"
+    [ngClass]="invalid ? 'border-red-500' : classList"
+    [style]="isLoading ? 'background-color: rgb(243, 246, 249)' : ''"
   >
     <i
       *ngIf="leftIcon"
@@ -17,7 +18,9 @@
       [id]="id"
       [(ngModel)]="value"
       (ngModelChange)="onChange($event)"
-      class="w-full h-full border-none outline-none"
+      [disabled]="isLoading"
+      class="w-full h-full border-none outline-none bg-transparent"
+      [ngClass]="addClassInput"
     />
     <i
       *ngIf="rightIcon"

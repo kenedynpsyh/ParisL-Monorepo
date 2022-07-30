@@ -16,6 +16,12 @@ export class InputComponent implements OnInit {
   @Input() invalid: boolean = false;
   @Input() message: string = '';
   @Output() onchange: EventEmitter<any> = new EventEmitter<string>();
+  @Input() isLoading: boolean = false;
+  @Input() addClass: string = '';
+  @Input() addClassInput: string = '';
+
+  // input dialog
+  @Input() dialog: boolean = false;
 
   // Left Icon Props
   @Input() leftIcon: string = '';
@@ -26,6 +32,8 @@ export class InputComponent implements OnInit {
   @Input() rightIcon: string = '';
   @Input() rightClick: boolean = false;
   @Output() rightIconClick: EventEmitter<any> = new EventEmitter();
+
+  classList = this.addClass;
 
   constructor() {}
 
@@ -41,5 +49,9 @@ export class InputComponent implements OnInit {
     this.onchange.emit(value);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.classList = `${this.addClass} ${
+      this.isLoading ? 'noc-input-isLoading' : ''
+    }`;
+  }
 }

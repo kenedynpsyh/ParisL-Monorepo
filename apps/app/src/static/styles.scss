@@ -98,3 +98,9 @@ $text: rgba(49, 53, 59, 0.68);
 .noc-color-red-hidden {
   color: #ff00004a !important;
 }
+
+.noc-input-isLoading {
+  &:hover {
+    background-color: rgb(238 239 239) !important;
+  }
+}
