@@ -14,7 +14,11 @@
         "tsConfig": "apps/app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/app/src/favicon.ico", "apps/app/src/assets"],
-        "styles": ["apps/app/src/styles.scss"],
+        "styles": [
+          "apps/app/src/static/styles.scss",
+          "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css",
+          "node_modules/ng-zorro-antd/resizable/style/index.min.css"
+        ],
         "scripts": []
       },
       "configurations": {
