@@ -20,6 +20,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { InputDialogComponent } from './ui/input-dialog/input-dialog.component';
+import { TextComponent } from './ui/text/text.component';
 
 registerLocaleData(en);
 
@@ -39,6 +40,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     InputComponent,
     HomeComponent,
     InputDialogComponent,
+    TextComponent,
   ],
   imports: [
     BrowserModule,
