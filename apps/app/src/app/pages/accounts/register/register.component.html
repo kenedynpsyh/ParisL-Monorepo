@@ -1,0 +1,75 @@
+<form
+  class="w-full flex items-center justify-center"
+  style="height: 80vh"
+  (submit)="submit()"
+>
+  <div class="flex items-center justify-around w-7/12 flex-wrap">
+    <img
+      src="https://iconarchive.com/download/i103468/paomedia/small-n-flat/shop.ico"
+      alt=""
+    />
+    <div class="w-96">
+      <div class="text-2xl pb-4 font-bold text-gray-600">Sign up now !</div>
+      <div class="py-1">
+        <app-input
+          id="test-fullname-field"
+          type="text"
+          [value]="fullname"
+          (onchange)="changeFullName($event)"
+          [addClass]="'w-96'"
+          label="Full name"
+          placeholder="Full name"
+        ></app-input>
+      </div>
+      <div class="py-1">
+        <app-input
+          id="test-email-field"
+          type="email"
+          [value]="email"
+          (onchange)="changeEmail($event)"
+          [addClass]="'w-96'"
+          label="Email address"
+          placeholder="Email address"
+        ></app-input>
+      </div>
+      <div class="py-1">
+        <app-input
+          id="password"
+          type="password"
+          [addClass]="'w-96'"
+          [value]="password"
+          (onchange)="changePassword($event)"
+          label="Password"
+          placeholder="Password"
+        ></app-input>
+      </div>
+      <div class="py-1">
+        <app-input
+          id="test-confirmation-field"
+          type="password"
+          [addClass]="'w-96'"
+          [value]="confirmation"
+          (onchange)="changeConfirmation($event)"
+          label="Confirmation"
+          placeholder="Confirmation"
+        ></app-input>
+      </div>
+      <div class="pt-4 flex items-center justify-center w-96">
+        <app-button
+          type="submit"
+          name="Sign up"
+          [isLoading]="isLoading"
+          addClass="w-72"
+        ></app-button>
+      </div>
+      <div class="flex items-center justify-center py-4">
+        <app-text name="Already exists accounts ? "></app-text>
+        <app-text
+          name="Sign in"
+          addClass="transition duration-500 hover:text-blue-500 cursor-pointer ml-2"
+          (onclick)="onRouter('/accounts/login')"
+        ></app-text>
+      </div>
+    </div>
+  </div>
+</form>

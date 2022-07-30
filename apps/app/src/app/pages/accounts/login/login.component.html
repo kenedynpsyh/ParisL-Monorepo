@@ -1,0 +1,77 @@
+<form
+  class="w-full flex items-center justify-center"
+  style="height: 80vh"
+  (submit)="submit()"
+>
+  <div class="flex items-center justify-around w-7/12 flex-wrap">
+    <img
+      src="https://iconarchive.com/download/i103468/paomedia/small-n-flat/shop.ico"
+      alt=""
+    />
+    <div class="w-96">
+      <div class="text-2xl pb-4 font-bold text-gray-600">Sign in</div>
+      <div class="py-1">
+        <app-input
+          id="test-email-field"
+          type="text"
+          [addClass]="'w-96'"
+          label="Email address"
+          placeholder="Email address"
+          [value]="username"
+          (onchange)="onChangeUsername($event)"
+        ></app-input>
+      </div>
+      <div class="py-1">
+        <app-input
+          id="test-password-field"
+          type="password"
+          [addClass]="'w-96'"
+          label="Password"
+          placeholder="Password"
+          [value]="password"
+          (onchange)="onChangePassword($event)"
+        ></app-input>
+      </div>
+      <div class="py-1 flex items-center justify-between w-96">
+        <div class="flex items-center">
+          <nz-switch
+            [(ngModel)]="remember"
+            id="test-rememmber-field"
+            name="remember"
+          ></nz-switch>
+          <app-text name="Rememmber me" [addClass]="'ml-2'"></app-text>
+        </div>
+        <app-text
+          name="Forgotted password ?"
+          addClass="transition duration-500 hover:text-blue-400 cursor-pointer"
+          (onclick)="onRouter('/accounts/reset-password')"
+        ></app-text>
+      </div>
+      <div class="pt-4 flex items-center justify-center w-96">
+        <app-button
+          id="test-login-submit"
+          type="submit"
+          name="Sign in"
+          [isLoading]="isLoading"
+          addClass="w-72"
+        ></app-button>
+      </div>
+      <nz-divider nzText="Or"></nz-divider>
+      <app-button-provider
+        name="Google"
+        icon="google"
+        addClass="w-96"
+        id="signin-button-field"
+        (onclick)="onRouter('')"
+      ></app-button-provider>
+      <div class="flex items-center justify-center py-4">
+        <app-text name="Don't have accounts ? "></app-text>
+        <app-text
+          name="Sign up"
+          addClass="transition duration-500 hover:text-blue-500 cursor-pointer ml-2"
+          (onclick)="onRouter('/accounts/register')"
+        ></app-text>
+      </div>
+    </div>
+  </div>
+</form>

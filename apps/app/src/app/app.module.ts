@@ -21,6 +21,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { InputDialogComponent } from './ui/input-dialog/input-dialog.component';
 import { TextComponent } from './ui/text/text.component';
+import { LoginComponent } from './pages/accounts/login/login.component';
+import { RegisterComponent } from './pages/accounts/register/register.component';
+import { ResetPasswordComponent } from './pages/accounts/reset-password/reset-password.component';
+import { ButtonProviderComponent } from './ui/button-provider/button-provider.component';
+import { StoreModule } from '@ngrx/store';
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
 
 registerLocaleData(en);
 
@@ -38,9 +45,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     NavbarComponent,
     ButtonComponent,
     InputComponent,
-    HomeComponent,
     InputDialogComponent,
     TextComponent,
+    ButtonProviderComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +61,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     DragDropModule,
     ScrollingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    StoreModule.forRoot([]),
+    EffectsModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
