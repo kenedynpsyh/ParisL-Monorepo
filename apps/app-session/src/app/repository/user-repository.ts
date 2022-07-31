@@ -1,4 +1,5 @@
 import {
+  admin_includes,
   user_exclude,
   user_includes,
 } from '@serve/database/associate/user-associate';
@@ -42,7 +43,7 @@ export class UserRepository {
   }): Promise<UserInstance[]> {
     return await user_models.findAll({
       where: { email: { [Op.iLike]: `%${value.email}%` } },
-      include: user_includes,
+      include: admin_includes,
       attributes: { exclude: user_exclude },
     });
   }
