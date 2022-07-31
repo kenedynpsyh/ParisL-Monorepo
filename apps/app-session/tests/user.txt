@@ -1,1 +1,0 @@
-{"id":81,"public_id":"JWemqX7PsfDaRPHTX5m4g","email":"Erick19@hotmail.com","password":"$2b$10$QZ3wivP8i1P/ajRyegqvRegRf7ZEvSxH4V53d3DqdUQ4hNrUr5IDi","updatedAt":"2022-07-31T15:33:59.728Z","createdAt":"2022-07-31T15:33:59.728Z","username":null,"token":null,"api_token":null}
