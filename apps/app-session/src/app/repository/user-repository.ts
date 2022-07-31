@@ -6,7 +6,7 @@ import {
 import user_models, {
   UserInstance,
 } from '@serve/database/models/auth/user-models';
-import { Op } from 'sequelize/dist';
+import { Op } from 'sequelize';
 import { Service } from 'typedi';
 
 @Service()
@@ -19,7 +19,20 @@ export class UserRepository {
   public async findOneRepository(value: {
     [key: string]: any;
   }): Promise<UserInstance> {
-    return await user_models.findOne({ where: value });
+    return user_models.findOne({ where: value });
+  }
+
+  /**
+   * findOneDetail
+   */
+  public async findOneDetailRepository(value: {
+    [key: string]: any;
+  }): Promise<UserInstance> {
+    return await user_models.findOne({
+      where: value,
+      attributes: { exclude: user_exclude },
+      include: user_includes,
+    });
   }
 
   /**

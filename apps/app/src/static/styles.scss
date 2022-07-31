@@ -104,3 +104,13 @@ $text: rgba(49, 53, 59, 0.68);
     background-color: rgb(238 239 239) !important;
   }
 }
+
+.ant-message .anticon {
+  top: -3px !important;
+}
+
+.ant-avatar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

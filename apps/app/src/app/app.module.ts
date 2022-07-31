@@ -28,6 +28,7 @@ import { ButtonProviderComponent } from './ui/button-provider/button-provider.co
 import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { ProgressBarModule } from 'angular-progress-bar';
 
 registerLocaleData(en);
 
@@ -60,10 +61,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
     FormsModule,
     DragDropModule,
     ScrollingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
     StoreModule.forRoot([]),
     EffectsModule,
+    ProgressBarModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

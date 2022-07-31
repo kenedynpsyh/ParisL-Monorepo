@@ -1,4 +1,4 @@
-export dev=true port=9991 test=false
+export dev=true port=9991
 export db_user=postgres
 export db_name=_
 export db_pass=EMP!2021

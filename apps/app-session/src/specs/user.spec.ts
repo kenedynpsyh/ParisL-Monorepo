@@ -126,7 +126,18 @@ describe('user::unittest', () => {
 
     it('find one user', async () => {
       await supertest(app.app)
-        .get(`/api/v1/user/${user.public_id}`)
+        .get(`/api/v1/user/detail/${user.public_id}`)
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body).not.toEqual(null);
+        });
+    });
+
+    it('find me', async () => {
+      await supertest(app.app)
+        .get('/api/v1/user/me')
         .set('content-type', 'application/json')
         .set('authorization', `Bearer ${token}`)
         .expect(status.OK)
