@@ -4,6 +4,7 @@ import bcrypt from 'bcrypt';
 import _ from 'lodash';
 import {
   authorfields,
+  locationfields,
   loginfields,
   passwordfields,
   registerfields,
@@ -25,6 +26,7 @@ import {
 import { env } from '@serve/utils/dotenv-utils';
 import user_logs_models from '@serve/database/models/services/logs-models';
 import { Op } from 'sequelize';
+import location_models from '@serve/database/models/auth/location-models';
 
 @Service()
 export class UserService {
@@ -61,6 +63,10 @@ export class UserService {
       ..._.pick(body, ['email', 'password']),
     });
     await roles_models.create({
+      public_id: public_id(),
+      user_id: create.public_id,
+    });
+    await location_models.create({
       public_id: public_id(),
       user_id: create.public_id,
     });
@@ -192,4 +198,16 @@ export class UserService {
   }
 
   // location
+
+  /**
+   * location
+   */
+  public async locationService(body: locationfields, user_id: string) {
+    const result = await location_models.findOne({ where: { user_id } });
+    if (!result) {
+      return errors(status.INTERNAL_SERVER_ERROR, 'false');
+    }
+    result.update(body);
+    return { status: status.OK, message: this.message, result };
+  }
 }
