@@ -3,6 +3,7 @@ import jsonwebtoken from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import _ from 'lodash';
 import {
+  authorfields,
   loginfields,
   passwordfields,
   registerfields,
@@ -13,6 +14,7 @@ import {
   createpath,
   errors,
   public_id,
+  removepath,
   status,
   ticket,
 } from '@serve/utils/system-utils';
@@ -20,7 +22,6 @@ import {
   roles_models,
   user_models,
 } from '@serve/database/associate/user-associate';
-import { Op } from 'sequelize';
 import { env } from '@serve/utils/dotenv-utils';
 
 @Service()
@@ -29,7 +30,7 @@ export class UserService {
   private confirmation = (old: string, data: string): boolean =>
     bcrypt.compareSync(old, data);
   private match = (old: string, data: string): boolean => old === data;
-  private message: string = 'profile has been updated';
+  private message: string = 'Profile has been updated';
 
   constructor(private readonly repository: UserRepository) {}
 
@@ -125,5 +126,40 @@ export class UserService {
       status: status.OK,
       message: 'Password has been reset, please check your email account.',
     };
+  }
+
+  /**
+   * authorService
+   */
+  public async authorService(body: authorfields, user_id: string) {
+    const result = await roles_models.findOne({ where: { user_id } });
+    if (!result) {
+      return errors(status.INTERNAL_SERVER_ERROR, 'false');
+    }
+    result.update(body);
+    return { status: status.OK, message: this.message, result };
+  }
+
+  /**
+   * file
+   */
+  public async fileService(
+    file: Express.Multer.File,
+    path: string,
+    user_id: string
+  ) {
+    const result = await roles_models.findOne({ where: { user_id } });
+    if (!result) {
+      return errors(status.INTERNAL_SERVER_ERROR, 'false');
+    }
+    const split = file.path.split('serve/');
+    if (split.length) {
+      result[path] = split[1];
+      try {
+        removepath(`..${result[path]}`);
+      } catch (error) {}
+    }
+    result.save();
+    return { status: status.OK, message: this.message, result };
   }
 }

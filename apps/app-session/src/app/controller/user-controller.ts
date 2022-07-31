@@ -1,5 +1,5 @@
 import { UserInstance } from '@serve/database/models/auth/user-models';
-import { status } from '@serve/utils/system-utils';
+import { fileUploadOptions, status } from '@serve/utils/system-utils';
 import { Response } from 'express';
 import {
   Authorized,
@@ -7,16 +7,22 @@ import {
   ContentType,
   Controller,
   CurrentUser,
+  Get,
   HttpCode,
+  Param,
   Post,
+  QueryParams,
   Res,
+  UploadedFile,
 } from 'routing-controllers';
 import { Service } from 'typedi';
 import {
+  authorfields,
   loginfields,
   passwordfields,
   registerfields,
   resetfields,
+  UserQuery,
 } from '../fields/user-fields';
 import { UserRepository } from '../repository/user-repository';
 import { UserService } from '../services/user-service';
@@ -28,6 +34,30 @@ export class UserController {
     private readonly repository: UserRepository,
     private readonly service: UserService
   ) {}
+
+  @Get()
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async allController(
+    @QueryParams() params: UserQuery,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.repository.findAll(params);
+    return res.status(status.OK).json(r);
+  }
+
+  @Get(':public_id')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async findOneController(
+    @Param('public_id') public_id: string,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.repository.findOne({ public_id });
+    return res.status(status.OK).json(r);
+  }
 
   @Post('login')
   @HttpCode(status.OK)
@@ -72,6 +102,35 @@ export class UserController {
     @Res() res: Response
   ): Promise<Response> {
     const r = await this.service.passwordService(body, user.public_id);
+    return res.status(r.status).json(r);
+  }
+
+  @Post('roles')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async rolesController(
+    @Body() body: authorfields,
+    @CurrentUser() user: UserInstance,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.service.authorService(body, user.public_id);
+    return res.status(r.status).json(r);
+  }
+
+  @Post('upload/:path')
+  @HttpCode(status.OK)
+  @Authorized()
+  private async uploadController(
+    @UploadedFile('file', {
+      options: fileUploadOptions('../../upload/author'),
+    })
+    file: Express.Multer.File,
+    @Param('path') path: string,
+    @CurrentUser() user: UserInstance,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.service.fileService(file, path, user.public_id);
     return res.status(r.status).json(r);
   }
 }

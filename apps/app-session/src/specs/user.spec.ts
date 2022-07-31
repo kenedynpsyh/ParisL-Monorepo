@@ -70,5 +70,57 @@ describe('user::unittest', () => {
           expect(res.body.message).toEqual('Password has been updated');
         });
     });
+
+    it('update an roles', async () => {
+      await supertest(app.app)
+        .post('/api/v1/user/roles')
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .send({
+          first_name: faker.name.firstName(),
+          last_name: faker.name.lastName(),
+          gender: faker.helpers.arrayElement(['Male', 'Female']),
+          birthday: new Date().toISOString(),
+        })
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.message).toEqual('Profile has been updated');
+        });
+    });
+
+    it('upload file avatar', async () => {
+      await supertest(app.app)
+        .post('/api/v1/user/upload/avatar')
+        .set('content-type', 'multipart/form-data')
+        .set('authorization', `Bearer ${token}`)
+        .attach('file', '422d9e7f488b0c9c6d69acf37bf8344f.jpeg')
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.message).toEqual('Profile has been updated');
+        });
+    });
+
+    it('find all user', async () => {
+      await supertest(app.app)
+        .get('/api/v1/user')
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .query({ email: '' })
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body).not.toEqual(null);
+        });
+    });
+
+    it('find one user', async () => {
+      await supertest(app.app)
+        .get(`/api/v1/user/${user.public_id}`)
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body).not.toEqual(null);
+        });
+    });
   }
 });

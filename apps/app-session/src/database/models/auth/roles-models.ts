@@ -7,7 +7,7 @@ interface RoleAtt extends BaseAtt {
   background?: string;
   first_name?: string;
   last_name?: string;
-  birthday?: Date;
+  birthday?: string;
   gender?: string;
   user_id?: string;
 }

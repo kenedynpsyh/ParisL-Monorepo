@@ -1,5 +1,10 @@
 import { IsString } from 'class-validator';
 
+export class UserQuery {
+  @IsString()
+  email: string;
+}
+
 export class loginfields {
   @IsString()
   token: string;

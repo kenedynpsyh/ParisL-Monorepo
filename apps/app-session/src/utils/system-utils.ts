@@ -2,6 +2,7 @@ import fs from 'fs';
 import { join } from 'path';
 import httpStatus from 'http-status';
 import createError from 'http-errors';
+import multer from 'multer';
 import { nanoid } from 'nanoid';
 import { UserInstance } from '@serve/database/models/auth/user-models';
 
@@ -28,6 +29,17 @@ export const removepath = (path: string) => {
 export const ticket = (): string => {
   return readpath('./jwtRS256.key');
 };
+
+export const fileUploadOptions = (path: string) => ({
+  storage: multer.diskStorage({
+    destination: (req: any, file: any, cb: any) => {
+      cb(null, joinpath(path));
+    },
+    filename: (req: any, file: Express.Multer.File, cb: any) => {
+      cb(null, `${public_id()}.${file.mimetype.split('/')[1]}`);
+    },
+  }),
+});
 
 interface FieldProps {
   user?: UserInstance;
