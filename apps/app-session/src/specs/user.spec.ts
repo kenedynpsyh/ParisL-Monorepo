@@ -134,5 +134,16 @@ describe('user::unittest', () => {
           expect(res.body).not.toEqual(null);
         });
     });
+
+    it('log out an accounts', async () => {
+      await supertest(app.app)
+        .get('/api/v1/user/revoke/token')
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.status).toEqual(status.OK);
+        });
+    });
   }
 });
