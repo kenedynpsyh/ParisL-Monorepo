@@ -62,5 +62,9 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(path);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (cookies.get('email')) {
+      this.username = cookies.get('email');
+    }
+  }
 }
