@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import { faker } from '@faker-js/faker';
 import { app } from '@serve/main';
-import { status } from '@serve/utils/system-utils';
+import { fields, status } from '@serve/utils/system-utils';
 
 describe('user::unittest', () => {
   it('created an accounts', async () => {
@@ -19,4 +19,56 @@ describe('user::unittest', () => {
         expect(res.body.message).toEqual('Accounts has been created');
       });
   });
+
+  if (fields['user']) {
+    const user = fields['user'];
+    it('log in an accounts', async () => {
+      await supertest(app.app)
+        .post('/api/v1/user/login')
+        .set('content-type', 'application/json')
+        .send({
+          token: user.email,
+          password: 'password',
+        })
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.token.length).not.toEqual(1);
+        });
+    });
+
+    it('reset an accounts', async () => {
+      await supertest(app.app)
+        .post('/api/v1/user/reset')
+        .set('content-type', 'application/json')
+        .send({
+          email: user.email,
+        })
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.message).toEqual(
+            'Password has been reset, please check your email account.'
+          );
+        });
+    });
+  }
+
+  if (fields['token']) {
+    const user = fields['user'];
+    const token = fields['token'];
+    it('change password', async () => {
+      await supertest(app.app)
+        .post('/api/v1/user/password')
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .send({
+          old_password: 'password',
+          password: 'password',
+          confirmation: 'password',
+        })
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.message).toEqual('Password has been updated');
+        });
+    });
+  }
 });

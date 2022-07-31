@@ -1,15 +1,23 @@
+import { UserInstance } from '@serve/database/models/auth/user-models';
 import { status } from '@serve/utils/system-utils';
 import { Response } from 'express';
 import {
+  Authorized,
   Body,
   ContentType,
   Controller,
+  CurrentUser,
   HttpCode,
   Post,
   Res,
 } from 'routing-controllers';
 import { Service } from 'typedi';
-import { loginfields, registerfields } from '../fields/user-fields';
+import {
+  loginfields,
+  passwordfields,
+  registerfields,
+  resetfields,
+} from '../fields/user-fields';
 import { UserRepository } from '../repository/user-repository';
 import { UserService } from '../services/user-service';
 
@@ -40,6 +48,30 @@ export class UserController {
     @Res() res: Response
   ): Promise<Response> {
     const r = await this.service.createdService(body);
+    return res.status(r.status).json(r);
+  }
+
+  @Post('reset')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  private async resetController(
+    @Body() body: resetfields,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.service.resetService(body);
+    return res.status(r.status).json(r);
+  }
+
+  @Post('password')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async passwordController(
+    @Body() body: passwordfields,
+    @CurrentUser() user: UserInstance,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.service.passwordService(body, user.public_id);
     return res.status(r.status).json(r);
   }
 }

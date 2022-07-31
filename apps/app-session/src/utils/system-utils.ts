@@ -3,6 +3,7 @@ import { join } from 'path';
 import httpStatus from 'http-status';
 import createError from 'http-errors';
 import { nanoid } from 'nanoid';
+import { UserInstance } from '@serve/database/models/auth/user-models';
 
 export const status = httpStatus;
 export const errors = createError;
@@ -29,7 +30,7 @@ export const ticket = (): string => {
 };
 
 interface FieldProps {
-  user?: any;
+  user?: UserInstance;
   token?: string;
 }
 const fields: FieldProps = {};
@@ -38,7 +39,7 @@ try {
   fields['user'] = JSON.parse(readpath('../../tests/user.txt'));
 } catch (error) {}
 try {
-  fields['token'] = readpath('../../token.txt');
+  fields['token'] = readpath('../../tests/token.txt');
 } catch (error) {}
 
 export { fields };

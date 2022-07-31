@@ -1,0 +1,1 @@
+{"id":16,"public_id":"307auFPeEQImOBSteN4Zt","email":"Theresa19@yahoo.com","password":"$2b$10$iuCit05P8rY7NqWXRKC.COOKW2IaQ80zM6mGVmIX.Ay76QHd7/WNK","updatedAt":"2022-07-31T13:33:03.291Z","createdAt":"2022-07-31T13:33:03.291Z","username":null,"token":null,"api_token":null}
