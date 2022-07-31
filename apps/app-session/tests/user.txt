@@ -1,1 +1,1 @@
-{"id":79,"public_id":"ny-m253g3d0kbENCJ8J-G","email":"Amara.Jaskolski@hotmail.com","password":"$2b$10$CI6xi5L5rsko3LJiF2td3u/QjrRpGAbeX5FqyikgJWyqa20r/S8/y","updatedAt":"2022-07-31T15:32:41.605Z","createdAt":"2022-07-31T15:32:41.605Z","username":null,"token":null,"api_token":null}
+{"id":80,"public_id":"VaShiZ7fgWm9hL4W1jv-o","email":"Eugenia_Spencer46@yahoo.com","password":"$2b$10$wVvlBZ1DQqT8MpG/JMwx2uGCybnM2U68xifd1zE8yNzTkYANc06He","updatedAt":"2022-07-31T15:33:16.640Z","createdAt":"2022-07-31T15:33:16.640Z","username":null,"token":null,"api_token":null}
