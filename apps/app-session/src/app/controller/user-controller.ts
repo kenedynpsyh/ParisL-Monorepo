@@ -60,7 +60,7 @@ export class UserController {
     return res.status(status.OK).json(r);
   }
 
-  @Get(':public_id')
+  @Get('detail/:public_id')
   @HttpCode(status.OK)
   @ContentType('application/json')
   @Authorized()
@@ -68,7 +68,21 @@ export class UserController {
     @Param('public_id') public_id: string,
     @Res() res: Response
   ): Promise<Response> {
-    const r = await this.repository.findOneRepository({ public_id });
+    const r = await this.repository.findOneDetailRepository({ public_id });
+    return res.status(status.OK).json(r);
+  }
+
+  @Get('me')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async meController(
+    @CurrentUser() user: UserInstance,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.repository.findOneDetailRepository({
+      public_id: user.public_id,
+    });
     return res.status(status.OK).json(r);
   }
 

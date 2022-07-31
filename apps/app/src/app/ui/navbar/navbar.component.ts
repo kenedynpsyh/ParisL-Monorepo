@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import cookies from 'cookies-js';
+import { HttpErrorProps, HttpService } from '../../services/http/http-service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +9,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private readonly router: Router) {}
+  public token = cookies.get('kaize::token');
+
+  constructor(private router: Router, private httpService: HttpService) {}
 
   onRouter(path: string) {
     this.router.navigateByUrl(path);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.token) {
+      this.httpService
+        .httpControl({
+          method: 'get',
+          url: 'user/me',
+          authorization: true,
+        })
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+          },
+          (err: HttpErrorProps) => {
+            cookies.expire('kaize::token');
+            window.location.reload();
+          }
+        );
+    }
+  }
 }

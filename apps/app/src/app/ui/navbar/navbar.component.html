@@ -36,20 +36,51 @@
         class="fas fa-shopping-cart transition duration-500 hover:text-green-500 cursor-pointer"
       ></i>
     </div>
-    <div class="pl-8">
-      <app-button
-        [name]="'Log in'"
-        (onclick)="onRouter('/accounts/login')"
-        [typeButton]="'default'"
-        [addClass]="'w-24'"
-      ></app-button>
+    <div class="flex items-center" *ngIf="!token">
+      <div class="pl-8">
+        <app-button
+          [name]="'Log in'"
+          (onclick)="onRouter('/accounts/login')"
+          [typeButton]="'default'"
+          [addClass]="'w-24'"
+        ></app-button>
+      </div>
+      <div class="px-2">
+        <app-button
+          [name]="'Sign up'"
+          (onclick)="onRouter('/accounts/register')"
+          [addClass]="'w-24'"
+        ></app-button>
+      </div>
     </div>
-    <div class="px-2">
-      <app-button
-        [name]="'Sign up'"
-        (onclick)="onRouter('/accounts/register')"
-        [addClass]="'w-24'"
-      ></app-button>
+    <div class="flex items-center px-6" *ngIf="token">
+      <nz-avatar
+        nzIcon="user"
+        [nzSize]="40"
+        nz-dropdown
+        [nzDropdownMenu]="profile"
+      ></nz-avatar>
+      <nz-dropdown-menu #profile="nzDropdownMenu">
+        <div nz-menu>
+          <div class="w-60 h-72 p-3">
+            <button
+              class="border-b border-gray-100 w-full p-2 flex items-center justify-left transition duration-500 hover:bg-gray-100 rounded"
+            >
+              <app-text addClass="font-bold" name="Home"></app-text>
+            </button>
+            <button
+              class="border-b border-gray-100 w-full p-2 flex items-center justify-left transition duration-500 hover:bg-gray-100 rounded"
+            >
+              <app-text addClass="font-bold" name="Profile"></app-text>
+            </button>
+            <button
+              class="border-b border-gray-100 w-full p-2 flex items-center justify-left transition duration-500 hover:bg-gray-100 rounded"
+            >
+              <app-text addClass="font-bold" name="Log out"></app-text>
+            </button>
+          </div>
+        </div>
+      </nz-dropdown-menu>
     </div>
   </div>
 </div>
