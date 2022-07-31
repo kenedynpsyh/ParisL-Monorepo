@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/apps/app-session/tests/*
 
 # dependencies
 node_modules
