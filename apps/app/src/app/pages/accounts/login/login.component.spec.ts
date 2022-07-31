@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import TestComponentModule from '../../../test-component.module';
-import { ButtonProviderComponent } from '../../../ui/button-provider/button-provider.component';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {

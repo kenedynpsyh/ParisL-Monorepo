@@ -1,1 +1,1 @@
-{"id":107,"public_id":"BvG0UbN-2bQ0jlADHUAG7","email":"Pearl13@hotmail.com","password":"$2b$10$qT/d8Pk5GXcC38wrBidSMu257wbBtYSi8c2UzVQZwu1Xt8I.U14d.","updatedAt":"2022-07-31T18:29:27.961Z","createdAt":"2022-07-31T18:29:27.961Z","username":null,"token":null,"api_token":null}
+{"id":111,"public_id":"KhACXAczkpUpl60_tCwca","email":"Ludie_Wolf2@yahoo.com","password":"$2b$10$BdRRv2I1o4t0mHW/gw.5ZOXqxg/.6xqo1xz3jVCQF.te0CtjHwtSC","updatedAt":"2022-07-31T19:16:49.818Z","createdAt":"2022-07-31T19:16:49.818Z","username":null,"token":null,"api_token":null}
