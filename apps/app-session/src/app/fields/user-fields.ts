@@ -56,3 +56,20 @@ export class authorfields {
   @IsString()
   gender: string;
 }
+
+export class locationfields {
+  @IsString()
+  country: string;
+
+  @IsString()
+  states: string;
+
+  @IsString()
+  city: string;
+
+  @IsString()
+  address: string;
+
+  @IsString()
+  postcode: string;
+}

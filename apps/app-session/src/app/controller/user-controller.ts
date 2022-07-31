@@ -18,6 +18,7 @@ import {
 import { Service } from 'typedi';
 import {
   authorfields,
+  locationfields,
   loginfields,
   passwordfields,
   registerfields,
@@ -155,6 +156,19 @@ export class UserController {
     @Res() res: Response
   ): Promise<Response> {
     const r = await this.service.fileService(file, path, user.public_id);
+    return res.status(r.status).json(r);
+  }
+
+  @Post('location')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async locationController(
+    @Body() body: locationfields,
+    @CurrentUser() user: UserInstance,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.service.locationService(body, user.public_id);
     return res.status(r.status).json(r);
   }
 }

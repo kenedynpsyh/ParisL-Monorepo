@@ -135,6 +135,24 @@ describe('user::unittest', () => {
         });
     });
 
+    it('update location from accounts', async () => {
+      await supertest(app.app)
+        .post('/api/v1/user/location')
+        .set('content-type', 'application/json')
+        .set('authorization', `Bearer ${token}`)
+        .send({
+          country: faker.address.country(),
+          states: faker.address.state(),
+          city: faker.address.city(),
+          address: faker.address.streetAddress(),
+          postcode: faker.address.zipCode(),
+        })
+        .expect(status.OK)
+        .then((res) => {
+          expect(res.body.message).toEqual('Profile has been updated');
+        });
+    });
+
     it('log out an accounts', async () => {
       await supertest(app.app)
         .get('/api/v1/user/revoke/token')
