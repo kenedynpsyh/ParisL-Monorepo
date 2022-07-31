@@ -3,9 +3,9 @@ import { sequelize } from '..';
 import { BaseAtt } from '../auth/user-models';
 
 interface LogAtt extends BaseAtt {
-  loginAt: string;
-  logoutAt: string;
-  user_id: string;
+  loginAt?: string;
+  logoutAt?: string;
+  user_id?: string;
 }
 
 type LogCreationAtt = Optional<LogAtt, 'id'>;

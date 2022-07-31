@@ -23,6 +23,8 @@ import {
   user_models,
 } from '@serve/database/associate/user-associate';
 import { env } from '@serve/utils/dotenv-utils';
+import user_logs_models from '@serve/database/models/services/logs-models';
+import { Op } from 'sequelize';
 
 @Service()
 export class UserService {
@@ -89,10 +91,32 @@ export class UserService {
       algorithm: 'RS256',
     });
     find.save();
+    await user_logs_models.create({
+      public_id: public_id(),
+      user_id: find.public_id,
+    });
     if (env['test']) {
       createpath('../../tests/token.txt', find.api_token);
     }
     return { status: status.OK, token: find.api_token };
+  }
+
+  /**
+   * logout
+   */
+  public async logoutService(user_id: string) {
+    const find = await user_logs_models.findOne({
+      where: { [Op.and]: [{ user_id }, { logoutAt: { [Op.is]: null } }] },
+    });
+    const user = await this.repository.findOneRepository({
+      public_id: user_id,
+    });
+    if (!find || !user) {
+      return errors(status.INTERNAL_SERVER_ERROR, 'false');
+    }
+    user.update({ api_token: null, token: null });
+    find.update({ logoutAt: new Date().toISOString() });
+    return { status: status.OK };
   }
 
   /**
@@ -166,4 +190,6 @@ export class UserService {
     result.save();
     return { status: status.OK, message: this.message, result };
   }
+
+  // location
 }

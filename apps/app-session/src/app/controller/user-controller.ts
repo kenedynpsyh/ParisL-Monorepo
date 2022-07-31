@@ -82,6 +82,18 @@ export class UserController {
     return res.status(r.status).json(r);
   }
 
+  @Get('revoke/token')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async logoutController(
+    @CurrentUser() user: UserInstance,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.service.logoutService(user.public_id);
+    return res.status(r.status).json(r);
+  }
+
   @Post('created')
   @HttpCode(status.CREATED)
   @ContentType('application/json')
