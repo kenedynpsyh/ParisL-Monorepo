@@ -43,7 +43,19 @@ export class UserController {
     @QueryParams() params: UserQuery,
     @Res() res: Response
   ): Promise<Response> {
-    const r = await this.repository.findAll(params);
+    const r = await this.repository.findAllRepository(params);
+    return res.status(status.OK).json(r);
+  }
+
+  @Get('list/admin')
+  @HttpCode(status.OK)
+  @ContentType('application/json')
+  @Authorized()
+  private async adminController(
+    @QueryParams() query: UserQuery,
+    @Res() res: Response
+  ): Promise<Response> {
+    const r = await this.repository.findAllAdminRepository(query);
     return res.status(status.OK).json(r);
   }
 
@@ -55,7 +67,7 @@ export class UserController {
     @Param('public_id') public_id: string,
     @Res() res: Response
   ): Promise<Response> {
-    const r = await this.repository.findOne({ public_id });
+    const r = await this.repository.findOneRepository({ public_id });
     return res.status(status.OK).json(r);
   }
 

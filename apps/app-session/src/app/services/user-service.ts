@@ -38,7 +38,9 @@ export class UserService {
    * created
    */
   public async createdService(body: registerfields) {
-    const find = await this.repository.findOne(_.pick(body, ['email']));
+    const find = await this.repository.findOneRepository(
+      _.pick(body, ['email'])
+    );
     if (find) {
       return errors(
         status.BAD_REQUEST,
@@ -70,14 +72,16 @@ export class UserService {
    * loginService
    */
   public async loginService(body: loginfields) {
-    const find = await this.repository.findOne({ email: body.token });
+    const find = await this.repository.findOneRepository({ email: body.token });
     if (!find) {
       return errors(status.BAD_REQUEST, 'Inccorect username or password');
     }
     if (!this.confirmation(body.password, find.password)) {
       return errors(status.BAD_REQUEST, 'Inccorect username or password');
     }
-    const reset = await this.repository.findOne({ email: body.token });
+    const reset = await this.repository.findOneRepository({
+      email: body.token,
+    });
     reset.api_token = null;
     reset.token = null;
     reset.save();
@@ -95,7 +99,7 @@ export class UserService {
    * passwordService
    */
   public async passwordService(body: passwordfields, public_id: string) {
-    const find = await this.repository.findOne({ public_id });
+    const find = await this.repository.findOneRepository({ public_id });
     if (!find) {
       return errors(status.INTERNAL_SERVER_ERROR, 'false');
     }
@@ -116,7 +120,7 @@ export class UserService {
    * resetService
    */
   public async resetService(body: resetfields) {
-    const find = await this.repository.findOne(body);
+    const find = await this.repository.findOneRepository(body);
     if (!find) {
       return errors(status.BAD_REQUEST, 'Accounts not found');
     }
