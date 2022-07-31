@@ -13,6 +13,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router, private httpService: HttpService) {}
 
+  logout() {
+    cookies.expire('kaize::token');
+    window.location.reload();
+  }
+
   onRouter(path: string) {
     this.router.navigateByUrl(path);
   }

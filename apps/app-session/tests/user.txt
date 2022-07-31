@@ -1,1 +1,1 @@
-{"id":105,"public_id":"w1gxAEO7qiIIDtqm1zEVD","email":"Amos6@hotmail.com","password":"$2b$10$X9XHKuI68lnpPdlSQhdzWOa7AYaeOXbOfTrSbmLK2YTBNYaVcRusy","updatedAt":"2022-07-31T18:26:42.144Z","createdAt":"2022-07-31T18:26:42.144Z","username":null,"token":null,"api_token":null}
+{"id":107,"public_id":"BvG0UbN-2bQ0jlADHUAG7","email":"Pearl13@hotmail.com","password":"$2b$10$qT/d8Pk5GXcC38wrBidSMu257wbBtYSi8c2UzVQZwu1Xt8I.U14d.","updatedAt":"2022-07-31T18:29:27.961Z","createdAt":"2022-07-31T18:29:27.961Z","username":null,"token":null,"api_token":null}

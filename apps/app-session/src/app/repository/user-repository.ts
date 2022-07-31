@@ -19,7 +19,7 @@ export class UserRepository {
   public async findOneRepository(value: {
     [key: string]: any;
   }): Promise<UserInstance> {
-    return await user_models.findOne({ where: value });
+    return user_models.findOne({ where: value });
   }
 
   /**

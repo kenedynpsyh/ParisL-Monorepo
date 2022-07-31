@@ -150,7 +150,7 @@ export class UserService {
    * resetService
    */
   public async resetService(body: resetfields) {
-    const find = await this.repository.findOneRepository(body);
+    const find = await this.repository.findOneRepository({ email: body.email });
     if (!find) {
       return errors(status.BAD_REQUEST, 'Accounts not found');
     }

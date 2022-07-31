@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DemoNgZorroAntdModule } from './ng-zorro.module';
@@ -10,7 +11,7 @@ import { NavbarComponent } from './ui/navbar/navbar.component';
 import { TextComponent } from './ui/text/text.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, DemoNgZorroAntdModule],
+  imports: [CommonModule, FormsModule, DemoNgZorroAntdModule, HttpClientModule],
   exports: [
     NavbarComponent,
     ButtonComponent,
