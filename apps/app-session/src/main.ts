@@ -1,3 +1,5 @@
+import 'tsconfig-paths/register';
+import 'reflect-metadata';
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -23,6 +25,8 @@ class App extends BaseRouting {
     this.app.use(helmet());
     this.app.use(morgan('common'));
     this.app.use(volleyball);
+
+    this.controller(this.app);
   }
 
   private listen() {

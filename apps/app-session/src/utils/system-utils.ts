@@ -1,5 +1,12 @@
 import fs from 'fs';
 import { join } from 'path';
+import httpStatus from 'http-status';
+import createError from 'http-errors';
+import { nanoid } from 'nanoid';
+
+export const status = httpStatus;
+export const errors = createError;
+export const public_id = nanoid;
 
 export const createpath = (path: string, data: string) => {
   fs.writeFileSync(joinpath(path), data);
@@ -15,6 +22,10 @@ export const joinpath = (path: string): string => {
 
 export const removepath = (path: string) => {
   fs.unlinkSync(joinpath(path));
+};
+
+export const ticket = (): string => {
+  return readpath('./jwtRS256.key');
 };
 
 interface FieldProps {

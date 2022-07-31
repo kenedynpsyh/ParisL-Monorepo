@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@serve/*": ["./apps/app/app-session/src/*"]
+      "@serve/*": ["./apps/app-session/src/*"]
     },
     "esModuleInterop": true
   },
