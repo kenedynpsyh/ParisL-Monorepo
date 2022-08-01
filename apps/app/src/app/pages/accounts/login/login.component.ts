@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import cookies from 'cookies-js';
 
 @Component({
   selector: 'app-login',
