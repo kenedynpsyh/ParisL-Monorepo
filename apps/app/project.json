@@ -13,7 +13,11 @@
         "polyfills": "apps/app/src/polyfills.ts",
         "tsConfig": "apps/app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/app/src/favicon.ico", "apps/app/src/assets"],
+        "assets": [
+          "apps/app/src/favicon.ico",
+          "apps/app/src/assets",
+          "apps/app/src/static"
+        ],
         "styles": [
           "apps/app/src/static/styles.scss",
           "apps/app/src/static/tailwind.css",
@@ -27,8 +31,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "4mb",
+              "maximumError": "6mb"
             },
             {
               "type": "anyComponentStyle",
@@ -42,7 +46,21 @@
               "with": "apps/app/src/environments/environment.prod.ts"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "optimization": {
+            "scripts": true,
+            "styles": {
+              "minify": true,
+              "inlineCritical": false
+            },
+            "fonts": true
+          },
+          "sourceMap": false,
+          "namedChunks": false,
+          "aot": true,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true
         },
         "development": {
           "buildOptimizer": false,
