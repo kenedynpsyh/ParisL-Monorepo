@@ -4,7 +4,7 @@ import { LoginComponent } from './pages/accounts/login/login.component';
 import { RegisterComponent } from './pages/accounts/register/register.component';
 import { ResetPasswordComponent } from './pages/accounts/reset-password/reset-password.component';
 import { HomeComponent } from './pages/home/home.component';
-import { PublicGuardService } from './services/http/guard-service';
+import { PublicRouterService } from './services/guard/guard-service';
 
 const routes: Routes = [
   {
@@ -17,17 +17,17 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        canActivate: [PublicGuardService],
+        canActivate: [PublicRouterService],
       },
       {
         path: 'register',
         component: RegisterComponent,
-        canActivate: [PublicGuardService],
+        canActivate: [PublicRouterService],
       },
       {
         path: 'reset-password',
         component: ResetPasswordComponent,
-        canActivate: [PublicGuardService],
+        canActivate: [PublicRouterService],
       },
     ],
   },

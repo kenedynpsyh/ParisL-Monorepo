@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import TestComponentModule from '../../../test-component.module';
+import { UIComponentModule } from '../../../services/prefix/ui-component';
 import { ResetPasswordComponent } from './reset-password.component';
 
 describe('ResetPasswordComponent', () => {
@@ -9,7 +9,7 @@ describe('ResetPasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, TestComponentModule],
+      imports: [RouterTestingModule, UIComponentModule],
       declarations: [],
     }).compileComponents();
 

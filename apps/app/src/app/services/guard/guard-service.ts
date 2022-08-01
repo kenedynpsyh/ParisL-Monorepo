@@ -10,7 +10,7 @@ import cookies from 'cookies-js';
 @Injectable({
   providedIn: 'root',
 })
-export class GuardService implements CanActivate {
+export class GuardRouterService implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,7 +22,7 @@ export class GuardService implements CanActivate {
 @Injectable({
   providedIn: 'root',
 })
-export class PublicGuardService implements CanActivate {
+export class PublicRouterService implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

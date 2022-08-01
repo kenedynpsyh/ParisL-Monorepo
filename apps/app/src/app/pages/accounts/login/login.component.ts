@@ -1,10 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  HttpErrorProps,
-  HttpService,
-} from '../../../services/http/http-service';
-import cookies from 'cookies-js';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +12,7 @@ export class LoginComponent implements OnInit {
   @Input() remember: boolean = false;
   @Input() isLoading: boolean = false;
 
-  constructor(
-    private readonly router: Router,
-    private readonly httpService: HttpService
-  ) {}
+  constructor(private readonly router: Router) {}
 
   onChangeUsername(val: string) {
     this.username = val;
@@ -36,26 +28,6 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.isLoading = true;
-    this.httpService
-      .httpControl({
-        method: 'post',
-        url: 'user/login',
-        body: { token: this.username, password: this.password },
-      })
-      .subscribe(
-        (res: any) => {
-          if (this.remember) {
-            cookies.set('email', this.username);
-          }
-          cookies.set('kaize::token', res.token);
-          this.isLoading = false;
-          window.location.reload();
-        },
-        (err: HttpErrorProps) => {
-          this.isLoading = false;
-          this.httpService.createMessage('error', err.error.message);
-        }
-      );
   }
 
   onRouter(path: string) {

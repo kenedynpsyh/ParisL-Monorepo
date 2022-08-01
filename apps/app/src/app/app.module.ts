@@ -1,34 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import AppRoutingModule from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
-import { NavbarComponent } from './ui/navbar/navbar.component';
-import { ButtonComponent } from './ui/button/button.component';
-import { InputComponent } from './ui/input/input.component';
 import { DemoNgZorroAntdModule } from './ng-zorro.module';
-import en from '@angular/common/locales/en';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
-
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
 import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
-import { HomeComponent } from './pages/home/home.component';
-import { FormsModule } from '@angular/forms';
-import { InputDialogComponent } from './ui/input-dialog/input-dialog.component';
-import { TextComponent } from './ui/text/text.component';
-import { LoginComponent } from './pages/accounts/login/login.component';
-import { RegisterComponent } from './pages/accounts/register/register.component';
-import { ResetPasswordComponent } from './pages/accounts/reset-password/reset-password.component';
-import { ButtonProviderComponent } from './ui/button-provider/button-provider.component';
 import { StoreModule } from '@ngrx/store';
-import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ProgressBarModule } from 'angular-progress-bar';
+import { PrefixComponentModule } from './services/prefix/prefix-component.module';
+import en from '@angular/common/locales/en';
+import AppRoutingModule from './app-routing.module';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+import { environment } from '../environments/environment.prod';
 
 registerLocaleData(en);
 
@@ -40,32 +29,23 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
 );
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NxWelcomeComponent,
-    NavbarComponent,
-    ButtonComponent,
-    InputComponent,
-    InputDialogComponent,
-    TextComponent,
-    ButtonProviderComponent,
-    HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    ResetPasswordComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DemoNgZorroAntdModule,
-    FormsModule,
     DragDropModule,
     ScrollingModule,
-    StoreModule.forRoot([]),
-    EffectsModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+    }),
     ProgressBarModule,
     BrowserAnimationsModule,
-    HttpClientModule,
+    PrefixComponentModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

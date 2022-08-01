@@ -1,11 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  HttpErrorProps,
-  HttpService,
-} from '../../../services/http/http-service';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,7 +13,7 @@ export class RegisterComponent implements OnInit {
   @Input() confirmation: string = '';
   @Input() isLoading: boolean = false;
 
-  constructor(private router: Router, private httpService: HttpService) {}
+  constructor(private router: Router) {}
 
   changeFullName(val: string) {
     this.fullname = val;
@@ -38,28 +33,6 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     this.isLoading = true;
-    this.httpService
-      .httpControl({
-        method: 'post',
-        url: 'user/created',
-        body: {
-          fullname: this.fullname,
-          email: this.email,
-          password: this.password,
-          confirmation: this.confirmation,
-        },
-      })
-      .subscribe(
-        (res: any) => {
-          this.isLoading = false;
-          this.httpService.createMessage('success', res.message);
-          this.router.navigateByUrl('/accounts/login');
-        },
-        (err: HttpErrorProps) => {
-          this.isLoading = false;
-          this.httpService.createMessage('error', err.error.message);
-        }
-      );
   }
 
   onRouter(path: string) {
