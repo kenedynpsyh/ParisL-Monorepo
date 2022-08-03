@@ -1,1 +1,1 @@
-{"id":137,"public_id":"LAUGKf19fy_UKr0ftm-R7","email":"Jerod.Parisian@gmail.com","password":"$2b$10$Sq1CUjon4ta2RDC7.6oaweG6RbgbOs3cU7moxs5KcWrY0QCh68wLm","updatedAt":"2022-08-03T22:48:35.504Z","createdAt":"2022-08-03T22:48:35.504Z","username":null,"token":null,"api_token":null}
+{"id":138,"public_id":"8QDQq8_b5XQwu7sd0wmKg","email":"Sandrine39@hotmail.com","password":"$2b$10$or.ldAZ9eF8iZaBOosqseeqFKGS01t.EveWqa7p9DrLK2IqnqyxPq","updatedAt":"2022-08-03T22:49:19.829Z","createdAt":"2022-08-03T22:49:19.829Z","username":null,"token":null,"api_token":null}

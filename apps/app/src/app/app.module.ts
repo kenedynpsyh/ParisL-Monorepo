@@ -18,6 +18,7 @@ import en from '@angular/common/locales/en';
 import AppRoutingModule from './app-routing.module';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { environment } from '../environments/environment.prod';
+import { ProfileComponent } from './pages/accounts/profile/profile.component';
 
 registerLocaleData(en);
 
@@ -29,7 +30,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(
 );
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

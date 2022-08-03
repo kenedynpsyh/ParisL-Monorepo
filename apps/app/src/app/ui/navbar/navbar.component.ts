@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   public help_: boolean = false;
   public language_: boolean = false;
 
-  constructor(private router: Router, private store: Store<AppState>) {
+  constructor(public router: Router, private store: Store<AppState>) {
     this.user = this.store.pipe(select(userDetailSelector));
   }
 
@@ -33,6 +33,16 @@ export class NavbarComponent implements OnInit {
   logout() {
     cookies.expire('kaize::token');
     window.location.reload();
+  }
+
+  goProfile(val: Observable<UserInitialStateInterface>) {
+    val.subscribe((res) => {
+      this.router.navigate(['/accounts/profile'], {
+        queryParams: {
+          username: res.user.author?.first_name,
+        },
+      });
+    });
   }
 
   onRouter(path: string) {
