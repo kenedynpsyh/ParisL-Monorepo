@@ -1,12 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
-import { UserEffect } from '../../../services/effects/user-effect';
 import { UIComponentModule } from '../../../services/prefix/ui-component';
-import { messageReducer } from '../../../store/reducers/message-reducer';
-import { userReducer } from '../../../store/reducers/user-reducer';
 import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {
@@ -15,16 +10,7 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        FormsModule,
-        UIComponentModule,
-        StoreModule.forRoot({
-          user: userReducer,
-          message: messageReducer,
-        }),
-        EffectsModule.forRoot([UserEffect]),
-      ],
+      imports: [RouterTestingModule, FormsModule, UIComponentModule],
       declarations: [],
     }).compileComponents();
 

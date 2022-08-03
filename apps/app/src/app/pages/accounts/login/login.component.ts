@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import cookies from 'cookies-js';
-import * as actions from '../../../store/actions/user-action';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +13,7 @@ export class LoginComponent implements OnInit {
   @Input() remember: boolean = false;
   @Input() isLoading: boolean = false;
 
-  constructor(private router: Router, private store: Store) {}
+  constructor(private readonly router: Router) {}
 
   onChangeUsername(val: string) {
     this.username = val;
@@ -30,15 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.store.dispatch(
-      actions.loginAction$({
-        body: {
-          token: this.username,
-          password: this.password,
-          remember: this.remember,
-        },
-      })
-    );
+    this.isLoading = true;
   }
 
   onRouter(path: string) {
@@ -46,8 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (cookies.get('kaize::email')) {
-      this.username = cookies.get('kaize::email');
+    if (cookies.get('email')) {
+      this.username = cookies.get('email');
     }
   }
 }
