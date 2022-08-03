@@ -42,6 +42,8 @@ export class UserService {
    * created
    */
   public async createdService(body: registerfields) {
+    let first_name: string = '',
+      last_name: string = '';
     const find = await this.repository.findOneRepository(
       _.pick(body, ['email'])
     );
@@ -62,8 +64,20 @@ export class UserService {
       public_id: public_id(),
       ..._.pick(body, ['email', 'password']),
     });
+    const split = body.fullname.split(' ');
+    first_name = split[0];
+    if (split.length >= 2) {
+      for (let i = 1; i < split.length; i++) {
+        last_name += split[i];
+        if (split.length !== i) {
+          last_name += ' ';
+        }
+      }
+    }
     await roles_models.create({
       public_id: public_id(),
+      first_name,
+      last_name,
       user_id: create.public_id,
     });
     await location_models.create({
