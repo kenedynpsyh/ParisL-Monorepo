@@ -29,10 +29,10 @@ class App extends BaseRouting {
 
     this.controller(this.app);
 
-    this.app.use(express.static(joinpath('../../../dist/apps/app')));
-    this.app.use('*', (req: Request, res: Response) => {
-      return res.sendFile(joinpath('../../../dist/apps/app/index.html'));
-    });
+    // this.app.use(express.static(joinpath('../../../dist/apps/app')));
+    // this.app.use('*', (req: Request, res: Response) => {
+    //   return res.sendFile(joinpath('../../../dist/apps/app/index.html'));
+    // });
   }
 
   private listen() {

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { registerAction$ } from '../../../store/actions/user-action';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ export class RegisterComponent implements OnInit {
   @Input() confirmation: string = '';
   @Input() isLoading: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store) {}
 
   changeFullName(val: string) {
     this.fullname = val;
@@ -32,7 +34,16 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    this.isLoading = true;
+    this.store.dispatch(
+      registerAction$({
+        body: {
+          fullname: this.fullname,
+          email: this.email,
+          password: this.password,
+          confirmation: this.confirmation,
+        },
+      })
+    );
   }
 
   onRouter(path: string) {
